@@ -1,0 +1,16 @@
+<% if @users.any? %>
+  <div class="card-deck row">
+    <% @users.each do |user| %>
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                  <img class="rounded-circle d-block mx-auto" src="<%= gravatar_url(user) %>" alt="">
+                </div>
+                <div class="card-footer">
+                  <%= link_to user.name, user_path(user) %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+  </div>
+<% end %>

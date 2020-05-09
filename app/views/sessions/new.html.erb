@@ -1,0 +1,27 @@
+<div class="row justify-content-center">
+    <div class="bg-light col-sm-4 m-5">
+        <h1 class="text-center">ログイン</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        
+      <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+      
+        <div class="form-group">
+          <%= f.label :email, 'メールアドレス' %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :password, 'パスワード'  %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        
+          <%= f.submit 'ログイン', class: 'btn btn-primary btn-block' %>
+        <% end %>
+        
+        <p>新規ユーザーの方は<%= link_to 'こちら', new_user_path %></p>
+    </div>
+</div>
