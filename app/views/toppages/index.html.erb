@@ -1,0 +1,31 @@
+<div class="card" style="width: 100%;">
+    <img class="card-img" src="/assets/main_visual.jpg" alt="">
+    <div class="card-img-overlay">
+      <p class="text-white">ここにテキストが入ります。</p>
+      <%= link_to 'ユーザー登録', new_user_path, class: 'btn, btn-primary'  %>
+    </div>
+</div>
+<div class="row justify-content-center border-bottom">
+    <div class="col-sm-4">
+        <h2 class="mt-4 text-center">質問一覧</h2>
+    </div>
+</div>
+<div class="row justify-content-center">
+  <% @questions.each do |question| %>
+    <div class="col-sm-4">
+        <div class="card border border-0">
+            <div class="card-body">
+                <img class="rounded-circle d-block mx-auto img-fluid" src="<%= gravatar_url(question.user) %>" alt="">
+            </div>
+            <div class="card-footer text-center">
+                <%= question.user.name %>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <h3><%= question.title %></h3>
+        <p><%= question.content %><p>
+        <div class="text-right"><%= link_to '詳細', question %></div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,33 @@
+<div class="row mt-5 mb-5">
+    <div class="col-sm-4 w-50">
+        <div class="card float-right">
+            <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(@question.user) %>" alt="">
+            <div class="card-footer text-center"><%= @question.user.name %></div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <h1><%= @question.title %></h1>
+        <p><%= @question.content %></p>
+        <div class="btn btn-primary float-right"><%= link_to '返信', new_question_answer_path(@question.id), class: 'text-white' %></div>
+    </div>
+</div>
+
+<div class="border-top border-bottom">
+    <h2 class="text-center m-4">返信一覧</h2>
+</div>
+<div>
+  <% @answers = @question.answers.all %>
+    <% @answers.each do |answer| %>
+      <div class="row">
+          <div class="col-sm-4 w-50">
+              <div class="card float-right">
+                <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(answer.user) %>" alt="">
+                <div class="card-footer text-center"><%= answer.user.name %></div>
+              </div>
+          </div>
+          <div class="col-sm-8">
+              <p><%= answer.content %></p>
+          </div>
+      </div>
+    <% end %>
+</div>

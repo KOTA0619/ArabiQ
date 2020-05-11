@@ -1,10 +1,10 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <a class="navbar-brand" href="/">ArabiQ</a>
           
           <ul class="navbar-nav">
             <% if logged_in? %>
-              <li class="nav-item">質問する</li>
+              <li class="nav-item text-muted"><%= link_to '質問する', new_question_path %></li>
               <li class="nav-item dropdown dropdown-menu-right">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">メニュー</a>
                 <ul class="dropdown-menu">
