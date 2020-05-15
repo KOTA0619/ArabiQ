@@ -3,13 +3,14 @@ class AnswersController < ApplicationController
   
   def new
     question = Question.find(params[:question_id])
-    @answer = current_user.answers.build
+    @answer = question.answers.build
+    @answer.user_id = current_user.id
   end
 
   def create
     question = Question.find(params[:question_id])
-    @answer = current_user.answers.build(answer_params)
-    @answer.question_id = question.id
+    @answer = question.answers.build(answer_params)
+    @answer.user_id = current_user.id
     
     if @answer.save
       flash[:success] = '返信しました。'

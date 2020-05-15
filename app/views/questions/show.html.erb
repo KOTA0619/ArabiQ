@@ -1,8 +1,7 @@
 <div class="row mt-5 mb-5">
-    <div class="col-sm-4 w-50">
-        <div class="card float-right">
-            <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(@question.user) %>" alt="">
-            <div class="card-footer text-center"><%= @question.user.name %></div>
+    <div class="col-sm-4">
+        <div class="w-50">
+          <%= render 'layouts/prof_icon', user: @question.user %>
         </div>
     </div>
     <div class="col-sm-8">
@@ -18,11 +17,10 @@
 <div>
   <% @answers = @question.answers.all %>
     <% @answers.each do |answer| %>
-      <div class="row">
+      <div class="row m-3 border-bottom">
           <div class="col-sm-4 w-50">
-              <div class="card float-right">
-                <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(answer.user) %>" alt="">
-                <div class="card-footer text-center"><%= answer.user.name %></div>
+              <div class="float-right">
+                <%= render 'layouts/prof_icon', user: answer.user %>
               </div>
           </div>
           <div class="col-sm-8">

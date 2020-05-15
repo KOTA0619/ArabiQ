@@ -3,11 +3,11 @@
 <div class="row mt-5">
     <div class="col-sm-6 offset-sm-3">
       
-      <%= form_with(model: [@question, @answer], url: question_answers_path, local: true) do |f| %>
+      <%= form_with(model: @answer, url: question_answers_path, local: true) do |f| %>
         
         <div class="form-group">
             <%= f.label :content, '本文' %>
-            <%= f.text_field :content, class: 'form-control' %>
+            <%= f.text_area :content, class: 'form-control' %>
         </div>
         
         <div class="text-center">
