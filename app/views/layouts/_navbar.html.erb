@@ -1,8 +1,9 @@
 <header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">ArabiQ</a>
-          
-          <div class="navbar-right">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><h3>ArabiQ</h3></a>
+         
+          <div class="justify-content-end">
             <ul class="navbar-nav">
               <% if logged_in? %>
                 <li class="nav-item"><%= link_to '質問する', new_question_path, class: 'text-white' %></li>
@@ -20,6 +21,8 @@
               <% end %>
             </ul>
           </div>
-          
+        </div>  
+         
+      </div>
     </nav>
 </header>

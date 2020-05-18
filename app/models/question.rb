@@ -5,5 +5,5 @@ class Question < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100}
   validates :content, presence: true, length: { maximum: 1000 }
   
-  has_many :answers
+  has_many :answers, dependent: :destroy
 end

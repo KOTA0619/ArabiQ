@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     
   resources :users, only: [:index, :show, :new, :create]
   
-  resources :questions, only: [:show, :new, :create] do
-    resources :answers, only: [:new, :create]
+  resources :questions, only: [:show, :new, :create, :edit, :update, :destroy] do
+    resources :answers, only: [:new, :create, :edit, :update, :destroy]
   end
 end

@@ -1,0 +1,22 @@
+.main_visual {
+    position: relative;
+    
+}
+
+.main_visual img {
+    width: 100%;
+}
+
+.main_text {
+    position: absolute;
+    color: #fff;
+    top: 10%;
+    left: 0;
+    margin-left: 50px;
+}
+
+.main_text p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    line-height: 30px;
+}

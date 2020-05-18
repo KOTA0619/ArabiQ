@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
-  before_action :require_user_logged_in, only: [:new, :create]
+  before_action :require_user_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
+  
   
   def show
     @question = Question.find(params[:id])
@@ -20,9 +22,40 @@ class QuestionsController < ApplicationController
     end
   end
   
+  def edit
+    @question = Question.find(params[:id])
+  end
+  
+  def update
+    @question = Question.find(params[:id])
+    
+    if @question.update(question_params)
+      flash[:sucess] = '変更を保存しました。'
+      redirect_to @question
+    else
+      flash[:danger] = '変更に失敗しました。'
+      render :edit
+    end
+  end
+  
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    
+    flash[:success] = '質問を削除しました。'
+    redirect_to root_url
+  end
+  
   private
   
   def question_params
     params.require(:question).permit(:content, :title)
+  end
+  
+  def correct_user
+    @question = current_user.questions.find_by(id: params[:id])
+    unless @question
+      redirect_to root_url
+    end
   end
 end

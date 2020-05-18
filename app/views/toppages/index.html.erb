@@ -1,34 +1,47 @@
-<div class="card" style="width: 100%;">
-    <img class="card-img" src="/assets/main_visual.jpg" alt="">
-    <div class="card-img-overlay">
-      <p class="text-white">ここにテキストが入ります。</p>
-      <%= link_to 'ユーザー登録', new_user_path, class: 'btn, btn-primary'  %>
-    </div>
-</div>
-<div class="row justify-content-center">
-    <div class="col-sm-4">
-        <h2 class="mt-4 text-center">質問一覧</h2>
-    </div>
+<div class="main_visual">
+        <img src="/assets/main_visual.jpg">
+        <div class="main_text">
+            <h2>ArabiQ</h2>
+            <p>ArabiQはアラビア語の質問サイトです。アラビア語は<br>
+               世界で5番目に母語話者数が多い言語であり、国連の公<br>
+               用語にもなっています。しかし日本での学習者の数は<br>
+               いまだに少ないのが現状です。また、アラビア語を学<br>
+               習していく中で、独学ではわからないことも出てくる<br>
+               はずです。そんな時には、このサイトで気軽に質問し<br>
+               てみましょう!
+            </p>
+                <% unless logged_in? %>
+                  <%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-primary'%>
+                <% end %>
+        </div>
 </div>
 
-<% @questions.each do |question| %>
-  <div class="row justify-content-center border-top">
-      <div class="col-sm-4 mt-3 mb-3">
-          <div class="w-50 ">
-            <%= render 'layouts/prof_icon', user: question.user %>
-          </div>
-      </div>
-      <div class="col-sm-8">
-          <h3><%= question.title %></h3>
-          <p><%= question.content %><p>
-          <div class="row justify-content-end">
-              <div class="mr-3">
-                <%= link_to '返信', new_question_answer_path(question.id), class: 'btn btn-primary' %>
-              </div>
-              <div class='mr-5'>
-                <%= link_to '詳細', question, class: 'btn btn-success' %>
-              </div>
-          </div>
-      </div>
-  </div>
-<% end %>
+<div class="container">
+ <div class="row justify-content-center">
+     <div class="col-sm-4">
+         <h2 class="mt-4 text-center">質問一覧</h2>
+     </div>
+ </div>
+
+ <% @questions.each do |question| %>
+   <div class="row justify-content-center border-top">
+       <div class="col-sm-4 mt-3 mb-3">
+           <div class="w-50 ">
+             <%= render 'layouts/prof_icon', user: question.user %>
+            </div>
+       </div>
+       <div class="col-sm-8">
+           <h3><%= question.title %></h3>
+           <p><%= question.content %><p>
+           <div class="row justify-content-end">
+               <div class="mr-3">
+                 <%= link_to '返信', new_question_answer_path(question.id), class: 'btn btn-primary' %>
+               </div>
+               <div class='mr-5'>
+                 <%= link_to '詳細', question, class: 'btn btn-success' %>
+               </div>
+           </div>
+       </div>
+   </div>
+  <% end %>
+</div>
