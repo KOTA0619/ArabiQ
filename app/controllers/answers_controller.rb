@@ -23,13 +23,11 @@ class AnswersController < ApplicationController
   end
   
   def edit
-    question = Question.find(params[:question_id])
-    @answer = Answer.find_by(question_id: question.id)
+    @answer = Answer.find(params[:id])
   end
   
   def update
-    question = Question.find(params[:question_id])
-    @answer = Answer.find_by(question_id: question.id)
+    @answer = Answer.find(params[:id])
     
     if @answer.update(answer_params)
       flash[:success] = '変更が保存されました。'
@@ -41,11 +39,12 @@ class AnswersController < ApplicationController
   end
   
   def destroy
-     @answer = Answer.find(params[:answer_id])
+     @answer = Answer.find(params[:id])
+     @question = @answer.question
      
      @answer.destroy
      flash[:success] = '返信を削除しました。'
-     redirect_to question_url
+     redirect_to question_url(@question.id)
   end
   
   private

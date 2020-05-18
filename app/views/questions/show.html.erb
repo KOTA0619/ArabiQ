@@ -32,12 +32,11 @@
               <div class="col-sm-8">
                   <p><%= answer.content %></p>
                   <% if current_user == answer.user %>
-                    <div class="btn btn-success float-right"><%= link_to '編集', edit_question_answer_path(@question.id), class: 'text-white' %></div>
                     <div>
-                      <%= form_with(url: question_answer_path(@question.id), local:true, method: :delete) do |f| %>
-                        <%= hidden_field_tag :answer_id, answer.id %>
-                        <%= f.submit '削除', class: 'btn btn-danger float-right mr-3' %>
-                      <% end %>
+                      <%= link_to '編集', edit_question_answer_path(@question.id, answer), class: 'btn btn-success float-right' %>
+                    </div>
+                    <div>
+                      <%= link_to '削除', question_answer_path(@question.id, answer), method: :delete, class: 'btn btn-danger float-right mr-3' %>
                     </div>
                   <% end %>
               </div>
