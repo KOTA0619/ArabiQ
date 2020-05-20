@@ -19,31 +19,22 @@
 </div>
 
 <div class="container">
- <div class="row justify-content-center">
-     <div class="col-sm-4">
-         <h2 class="mt-4 text-center">質問一覧</h2>
-     </div>
- </div>
-
- <% @questions.each do |question| %>
-   <div class="row justify-content-center border-top">
-       <div class="col-sm-4 mt-3 mb-3">
-           <div class="w-50 ">
-             <%= render 'layouts/prof_icon', user: question.user %>
+    <div class="text-center mt-5">
+       <h1>質問一覧</h1>
+    </div>
+    <div class="border-top"></div>
+  
+    <div class="row">
+      <% @questions.each do |question| %>
+        <div class="col-sm-4 mt-3 mb-3">
+            <div class="w-50 ">
+              <%= render 'layouts/prof_icon', user: question.user %>
             </div>
-       </div>
-       <div class="col-sm-8">
-           <h3><%= question.title %></h3>
-           <p><%= question.content %><p>
-           <div class="row justify-content-end">
-               <div class="mr-3">
-                 <%= link_to '返信', new_question_answer_path(question.id), class: 'btn btn-primary' %>
-               </div>
-               <div class='mr-5'>
-                 <%= link_to '詳細', question, class: 'btn btn-success' %>
-               </div>
-           </div>
-       </div>
-   </div>
-  <% end %>
+        </div>
+        <div class="col-sm-8">
+          <%= render 'layouts/question_index', question: question, user: question.user %>
+        </div>
+      <% end %>
+        
+    </div>
 </div>
