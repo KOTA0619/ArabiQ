@@ -23,11 +23,9 @@ class AnswersController < ApplicationController
   end
   
   def edit
-    @answer = Answer.find(params[:id])
   end
   
   def update
-    @answer = Answer.find(params[:id])
     
     if @answer.update(answer_params)
       flash[:success] = '変更が保存されました。'
@@ -39,9 +37,6 @@ class AnswersController < ApplicationController
   end
   
   def destroy
-     @answer = Answer.find(params[:id])
-     @question = @answer.question
-     
      @answer.destroy
      flash[:success] = '返信を削除しました。'
      redirect_to question_url(@question.id)
@@ -54,7 +49,8 @@ class AnswersController < ApplicationController
   end
   
   def correct_user
-    @answer = Answer.find_by(user_id: current_user.id)
+    #@answer = Answer.find_by(user_id: current_user.id)
+    @answer = current_user.answers.find_by(id: params[:id])
     unless @answer
       redirect_to root_url
     end

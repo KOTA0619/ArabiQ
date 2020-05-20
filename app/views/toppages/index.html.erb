@@ -10,7 +10,9 @@
                はずです。そんな時には、このサイトで気軽に質問し<br>
                てみましょう!
             </p>
-                <% unless logged_in? %>
+                <% if logged_in? %>
+                  <%= link_to '質問する', new_question_path, class: 'btn btn-success' %>
+                <% else %>
                   <%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-primary'%>
                 <% end %>
         </div>
