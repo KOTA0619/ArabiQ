@@ -52,6 +52,7 @@ class AnswersController < ApplicationController
     #@answer = Answer.find_by(user_id: current_user.id)
     @answer = current_user.answers.find_by(id: params[:id])
     unless @answer
+      flash[:warning] = 'その操作はできません。'
       redirect_to root_url
     end
   end
