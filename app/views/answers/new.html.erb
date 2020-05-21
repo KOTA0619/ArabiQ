@@ -15,6 +15,7 @@
     <div class="col-sm-6 offset-sm-3">
       
       <%= form_with(model: @answer, url: question_answers_path, local: true) do |f| %>
+        <%= render 'layouts/error_message', model: f.object %>
         
         <div class="form-group">
           <%= f.label :content, '本文' %>

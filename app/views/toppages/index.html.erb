@@ -11,7 +11,7 @@
                てみましょう!
             </p>
                 <% if logged_in? %>
-                  <%= link_to '質問する', new_question_path, class: 'btn btn-success' %>
+                  <%= link_to '質問する', new_question_path, class: 'btn btn-lg btn-success' %>
                 <% else %>
                   <%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-primary'%>
                 <% end %>

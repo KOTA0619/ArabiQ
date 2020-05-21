@@ -5,13 +5,16 @@
         </div>
     </div>
     
+    
     <div class="text-center mt-5">
         <h1>質問一覧</h1>
     </div>
     
     
       <% @user.questions.each do |question| %>
-        <%= render 'layouts/question_index', question: question, user: @user %>
+        <div class="mb-3">
+          <%= render 'layouts/question_index', question: question, user: @user %>
+        </div>
       <% end %>
     
 </div>
