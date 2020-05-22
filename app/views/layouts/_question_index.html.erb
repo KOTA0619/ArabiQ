@@ -1,9 +1,9 @@
 <div>
-    <div class="mt-4 ml-5">
+    <div class="mt-4 ml-4">
         <h3><%= question.title %></h3>
     </div>
     <div class="mt-3 ml-4">
-        <p><%= question.content %></p>
+        <p><%= safe_join("#{question.content}".split("\n"),tag(:br)) %></p>
     </div>
     <div class="row justify-content-end">
       <% if current_user == user %>

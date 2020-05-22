@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-8">
             <h1><%= @question.title %></h1>
-            <p><%= @question.content %></p>
+            <p><%= safe_join("#{@question.content}".split("\n"),tag(:br)) %></p>
             
             <% if current_user == @question.user %>
               <div class="btn btn-danger float-right ml-2"><%= link_to '削除', @question, method: :delete, data: { confirm: '本当に削除しますか?' }, class: 'text-white' %></div>
@@ -32,7 +32,7 @@
                   </div>
               </div>
               <div class="col-sm-8">
-                  <p><%= answer.content %></p>
+                  <p><%= safe_join("#{answer.content}".split("\n"),tag(:br)) %></p>
                   <% if current_user == answer.user %>
                     <div>
                       <%= link_to '編集', edit_question_answer_path(@question.id, answer), class: 'btn btn-info float-right' %>

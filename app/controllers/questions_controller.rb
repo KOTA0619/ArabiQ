@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   def update
     
     if @question.update(question_params)
-      flash[:sucess] = '変更を保存しました。'
+      flash[:success] = '変更を保存しました。'
       redirect_to @question
     else
       flash[:danger] = '変更に失敗しました。'
