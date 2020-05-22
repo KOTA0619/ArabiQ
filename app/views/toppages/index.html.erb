@@ -24,17 +24,20 @@
     </div>
     <div class="border-top"></div>
   
-    <div class="row">
-      <% @questions.each do |question| %>
-        <div class="col-sm-4 mt-3 mb-3">
-            <div class="w-50 ">
-              <%= render 'layouts/prof_icon', user: question.user %>
+    
+    <% @questions.each do |question| %>
+        <div class="row mb-3">
+            <div class="col-sm-4 mt-3">
+                <div class="w-50 ">
+                  <%= render 'layouts/prof_icon', user: question.user %>
+                </div>
+            </div>
+            <div class="col-sm-8">
+              <%= render 'layouts/question_index', question: question, user: question.user %>
             </div>
         </div>
-        <div class="col-sm-8">
-          <%= render 'layouts/question_index', question: question, user: question.user %>
-        </div>
-      <% end %>
+        <div class="border-top"></div>
+    <% end %>
         
-    </div>
+    
 </div>
