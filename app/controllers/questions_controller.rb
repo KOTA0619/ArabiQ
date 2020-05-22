@@ -37,6 +37,7 @@ class QuestionsController < ApplicationController
   end
   
   def destroy
+    @question.destroy
     
     flash[:success] = '質問を削除しました。'
     redirect_to root_url

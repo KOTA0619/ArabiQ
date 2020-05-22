@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
   def destroy
      @answer.destroy
      flash[:success] = '返信を削除しました。'
-     redirect_to question_url(@question.id)
+     redirect_back(fallback_location: root_url)
   end
   
   private
