@@ -10,7 +10,7 @@
                 <li class="nav-item dropdown dropdown-menu-right">
                   <a href="#" class="nav-link dropdown-toggle btn-lg text-white" data-toggle="dropdown">メニュー</a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><%= link_to current_user.name, user_path(current_user) %></li>
+                    <li class="dropdown-item"><%= link_to current_user.name.truncate(10), user_path(current_user) %></li>
                     <li class="dropdown-item"><%= link_to 'ユーザー一覧', users_path %></li>
                     <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
                   </ul>
