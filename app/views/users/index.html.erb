@@ -4,7 +4,12 @@
       <% @users.each do |user| %>
           <div class="col-sm-3">
               <div class="mt-3 w-75">
-                <%= render 'layouts/prof_icon', user: user%>
+                  <div class="card">
+                      <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(user) %>" alt="">
+                      <div class="card-footer text-center">
+                        <%= link_to user.name, user_path(user.id) %>
+                      </div>
+                  </div>
               </div>
           </div>
       <% end %>
