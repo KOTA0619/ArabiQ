@@ -4,7 +4,7 @@
     <h2 class="mt-3">質問</h2>
     <% question = Question.find(params[:question_id]) %>
     <p>タイトル：<%= question.title %></p>
-    <p>本文:<%= question.content %></p>
+    <p>本文:<p class="q_content"><%= question.content %></p></p>
 </div>
 
 <div class="text-center border-top">
@@ -14,7 +14,7 @@
 <div class="row mt-2 justify-content-center">
     <div class="col-sm-8">
       
-      <%= form_with(model: @answer, url: question_answers_path, local: true) do |f| %>
+      <%= form_with(model: @answer, url: question_answers_path(params[:question_id]), local: true) do |f| %>
         <%= render 'layouts/error_message', model: f.object %>
         
         <div class="form-group">

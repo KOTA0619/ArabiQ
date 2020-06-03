@@ -1,4 +1,12 @@
-<h1 class="mt-5 text-center">返信編集</h1></h1>
+<h1 class="mt-5 mb-3 text-center">返信編集</h1></h1>
+
+<div class="text-center border-top">
+    <h2 class="mt-3">質問</h2>
+    <% question = Question.find(params[:question_id]) %>
+    <p>タイトル：<%= question.title %></p>
+    <p>本文:<p class="q_content"><%= question.content %></p></p>
+</div>
+
 
 <div class="row mt-5">
     <div class="col-sm-6 offset-sm-3">

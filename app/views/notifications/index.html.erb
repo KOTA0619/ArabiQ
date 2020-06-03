@@ -1,0 +1,29 @@
+<h1 class="text-center m-4">通知一覧</h1>
+<hr>
+
+<% if @notifications.any? %>
+  <div class="container">
+    <% @notifications.each do |notification| %>
+      <div class="row">
+          <div class="col-sm-4">
+            <div class="w-50">
+              <%= render 'layouts/prof_icon', user: notification.visitor %>
+            </div>
+          </div>
+          <div class="col-sm-8">
+              <div>
+                <% @user = User.find_by(id: notification.visitor) %>
+                  <p><%= link_to @user.name, user_path(@user) %>さんが<%= link_to 'あなたの投稿', question_path(notification.question_id) %>に返信しました。</p>
+              </div>
+              <div>
+                <p><%= notification.answer.content %></p>
+              </div>
+              <div class="text-right">
+                <p class="text-muted"><%= notification.created_at %></p>
+              </div>
+          </div>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+<% end %>

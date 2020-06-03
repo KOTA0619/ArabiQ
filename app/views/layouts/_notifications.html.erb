@@ -1,0 +1,14 @@
+<h1 class="text-center">通知一覧</h1>
+
+<% notifications = Notification.all %>
+  <div>
+    <% notifications.each do |notification| %>
+      <div>
+        <% @user = User.find_by(id: notification.visitor) %>
+          <p><%= link_to @user.name, user_path(@user) %>さんが<%= link_to 'あなたの投稿', question_path(notification.question_id) %>に返信しました。</p>
+      </div>
+      <div>
+          <p><%= notification.answer.content %></p>
+      </div>
+    <% end %>
+  </div>

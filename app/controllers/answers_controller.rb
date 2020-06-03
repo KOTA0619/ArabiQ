@@ -14,10 +14,14 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.id
     
     if @answer.save
-      flash[:success] = '返信しました。'
+      flash[:success] = '返信を保存しました。'
+      
+      question.save_notification_answer(current_user, question.id, @answer.id, question.user.id)
+      
       redirect_to question_path(@answer.question_id)
     else 
       flash.now[:danger] = '返信に失敗しました。'
+      
       render :new
     end
   end
