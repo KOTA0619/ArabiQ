@@ -43,6 +43,10 @@ class QuestionsController < ApplicationController
     redirect_to root_url
   end
   
+  def search
+    @questions = Question.search(params[:search])
+  end
+  
   private
   
   def question_params

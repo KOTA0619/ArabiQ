@@ -19,4 +19,11 @@ class Question < ApplicationRecord
     notification.save
   end
   
+  def self.search(search)
+    if search
+      Question.where('title LIKE ? OR content LIKE ?', "%#{search}%", "%#{search}%")
+    else
+      Question.none
+    end
+  end
 end
