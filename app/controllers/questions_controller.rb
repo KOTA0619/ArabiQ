@@ -44,7 +44,15 @@ class QuestionsController < ApplicationController
   end
   
   def search
-    @questions = Question.search(params[:search])
+    split_keyword = params[:keyword].split(/[[:blank:]]+/)
+    
+    if split_keyword.any?
+      split_keyword.each do |word|
+        @questions = Question.where('title LIKE ? OR content LIKE ?', "%#{word}%", "%#{word}%")
+      end
+    else
+      @questions = Question.none
+    end
   end
   
   private

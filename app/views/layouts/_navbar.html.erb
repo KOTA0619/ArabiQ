@@ -9,8 +9,8 @@
                 <li class="nav-item mr-3">
                   <%= form_with url: search_questions_path, method: :get, local: true do |f| %>
                   <div class="row">
-                    <%= f.text_field :search %>
-                    <%= f.submit :search %>
+                    <%= f.text_field :keyword %>
+                    <%= f.submit :'検索' %>
                   </div>
                   <% end %>
                 </li>
