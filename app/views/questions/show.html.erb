@@ -22,7 +22,7 @@
         <h2 class="text-center m-4">返信一覧</h2>
     </div>
     <div>
-      <% @answers = @question.answers.all %>
+      <% @answers = @question.answers.order(id: :desc).page(params[:page]).per(10) %>
         <% @answers.each do |answer| %>
           <div class="row m-3 border-bottom">
               <div class="col-sm-4">
@@ -47,4 +47,5 @@
           </div>
         <% end %>
     </div>
+    <%= paginate @answers %>
 </div>

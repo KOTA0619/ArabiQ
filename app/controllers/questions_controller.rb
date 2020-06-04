@@ -48,7 +48,7 @@ class QuestionsController < ApplicationController
     
     if split_keyword.any?
       split_keyword.each do |word|
-        @questions = Question.where('title LIKE ? OR content LIKE ?', "%#{word}%", "%#{word}%")
+        @questions = Question.where('title LIKE ? OR content LIKE ?', "%#{word}%", "%#{word}%").order(id: :desc).page(params[:page]).per(10)
       end
     else
       @questions = Question.none

@@ -16,13 +16,15 @@
     </div>
     <div class="border-top"></div>
     
-    
-      <% @user.questions.each do |question| %>
+      <% questions = @user.questions.order(id: :desc).page(params[:page]).per(10) %>
+      <% questions.each do |question| %>
         <div class="border-bottom">
             <div class="mb-3">
               <%= render 'layouts/question_index', question: question, user: @user %>
             </div>
         </div>
       <% end %>
+      
+      <%= paginate questions %>
     
 </div>

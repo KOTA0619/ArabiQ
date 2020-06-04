@@ -1,5 +1,8 @@
 <div class="container">
-    <h1 class="text-center mt-3">検索結果</h1>
+    <div class="row justify-content-center mt-3">
+        <h1 class="text-primary"><%= params[:keyword] %></h1>
+        <h1>の検索結果</h1>
+    </div>
     <hr>
 
     <% @questions.each do |question| %>
@@ -15,6 +18,8 @@
       </div>
       <hr>
     <% end %>
+    
+    <%= paginate @questions %>
 
 </div>
     
