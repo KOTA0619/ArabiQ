@@ -1,0 +1,20 @@
+<div class="container">
+    <h1 class="text-center mt-3">退会</h1>
+    
+    <hr>
+    
+    <div>
+        <h3 class="text-center">本当に退会しますか?</h3>
+        
+        <div class="mx-auto" style="width: 200px;">
+          <%= render 'layouts/prof_icon', user: @user %>
+        </div>
+            
+        <hr>
+        
+        <div class="text-center">    
+          <%= link_to '退会', user_path(current_user), method: :delete, class: 'btn  btn-lg btn-primary text-center' %>
+        </div>
+    </div>
+    
+</div>

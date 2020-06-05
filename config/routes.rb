@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  
+  get 'withdrawl', to: 'users#destroy_confirmation'
     
-  resources :users, only: [:index, :show, :new, :create] do
+  resources :users do
     resources :notifications, only: [:index]
   end
   

@@ -25,6 +25,35 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      flash[:success] = "変更を保存しました。"
+      redirect_to user_url(@user)
+    else
+      flash[:danger] = "変更に失敗しました。"
+      render :edit
+    end
+  end
+  
+  def destroy_confirmation
+    @user = current_user
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    
+    @user.destroy
+    
+    flash[:success] = "退会しました。"
+    redirect_to root_url
+  end
+  
   private
   
   def user_params
