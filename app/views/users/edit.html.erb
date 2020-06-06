@@ -28,8 +28,13 @@
               <%= f.label :password_confirmation, '新しいパスワード(確認)' %>
               <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
+            
+            <div class="form-group">
+              <%= f.label :image, 'プロフィール画像' %>
+              <%= f.file_field :imgae, class: 'form-control' %>
+            </div>
         
-            <%= f.submit 'ユーザー登録', class: 'btn btn-primary btn-block' %>
+            <%= f.submit 'ユーザー編集', class: 'btn btn-primary btn-block' %>
           <% end %>
         
         </div>

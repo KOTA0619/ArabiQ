@@ -14,4 +14,6 @@ class User < ApplicationRecord
   def count_notifications(current_user)
     @count_notifications = current_user.passive_notifications.count
   end
+  
+  mount_uploader :image, ImageUploader
 end

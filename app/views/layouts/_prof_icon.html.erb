@@ -1,5 +1,9 @@
 <div class="card">
-    <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(user) %>" alt="">
+  <% if user.image? %>
+    <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= user.image_url(:thumb) %>" alt="">
+  <% else %>
+    <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="/assets/default.png" alt="">
+  <% end %>
     <div class="card-footer text-center text-truncate">
       <%= link_to user.name, user_path(user.id) %>
     </div>

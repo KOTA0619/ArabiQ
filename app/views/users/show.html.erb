@@ -1,13 +1,7 @@
 <div class="container" >
-    <div class="row mt-5 justify-content-center">
-        <div class="col-sm-4">
-            <div class="card">
-                <img class="rounded-circle d-block mx-auto img-fluid card-img-top" src="<%= gravatar_url(@user) %>" alt="">
-                <div class="card-footer text-center">
-                  <%= link_to @user.name, user_path(@user.id) %>
-                </div>
-            </div>
-        </div>
+    
+    <div class="mx-auto mt-5" style="width: 200px;">
+      <%= render 'layouts/prof_icon', user: @user %>
     </div>
     
     
