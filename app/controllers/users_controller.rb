@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      flash[:success] = 'ユーザーを登録しました。'
+      flash[:success] = user_params
       redirect_to login_url
     else
       flash.now[:danger] = 'ユーザー登録に失敗しました。'
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.update(user_params)
-      flash[:success] = "変更を保存しました。"
+      flash[:success] = "ユーザー情報を変更しました。"
       redirect_to user_url(@user)
     else
       flash[:danger] = "変更に失敗しました。"
