@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     resources :answers, only: [:new, :create, :edit, :update, :destroy]
     get :search, on: :collection
   end
+  
+  resources :acount_activations, only: [:edit]
 end

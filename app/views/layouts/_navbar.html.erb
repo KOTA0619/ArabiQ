@@ -6,7 +6,7 @@
           <div class="justify-content-end">
             <ul class="navbar-nav">
               <% if logged_in? %>
-                <li class="nav-item mr-3">
+                <li class="nav-item mr-4 mt-2">
                   <%= form_with url: search_questions_path, method: :get, local: true do |f| %>
                   <div class="row">
                     <%= f.text_field :keyword %>
@@ -15,16 +15,6 @@
                   <% end %>
                 </li>
                 <li class="nav-item"><%= link_to '質問する', new_question_path, class: 'btn btn-lg btn-success' %></li>
-                <li class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle btn-lg text-white" data-toggle="dropdown">メニュー</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item"><%= link_to current_user.name.truncate(10), user_path(current_user) %></li>
-                    <li class="dropdown-item"><%= link_to 'ユーザー一覧', users_path %></li>
-                    <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
-                    <li class="dropdown-item"><%= link_to 'ユーザー設定', edit_user_path(current_user) %></li>
-                    <li class="dropdown-item"><%= link_to '退会', withdrawl_path %></li>
-                  </ul>
-                </li>
                 <li class="nav-item dropdown">
                   <% notifications = current_user.passive_notifications.where(checked: false).order('created_at DESC').limit(5) %>
                     <a href="#" class="nav-link dropdown-toggle btn-lg text-white" data-toggle="dropdown">
@@ -50,6 +40,16 @@
                         </div>  
                       </div>
                   </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle btn-lg text-white" data-toggle="dropdown">メニュー</a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item"><%= link_to current_user.name.truncate(10), user_path(current_user) %></li>
+                    <li class="dropdown-item"><%= link_to 'ユーザー一覧', users_path %></li>
+                    <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+                    <li class="dropdown-item"><%= link_to 'ユーザー設定', edit_user_path(current_user) %></li>
+                    <li class="dropdown-item"><%= link_to '退会', withdrawl_path %></li>
+                  </ul>
                 </li>
               <% else %>      
                 <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'btn btn-lg text-white' %></li>
