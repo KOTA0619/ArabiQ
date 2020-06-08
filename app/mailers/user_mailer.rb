@@ -5,11 +5,11 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.account_activation.subject
   #
-  def account_activation(user)
-    @user = user
+  #def account_activation(user)
+    #@user = user
 
-    mail to: user.email, subject "アカウント登録完了のお知らせ"
-  end
+    #mail to: user.email, subject "アカウント登録完了のお知らせ"
+  #end
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
