@@ -100,8 +100,8 @@ Rails.application.configure do
     address: 'smtp.gmail.com',
     port: 587,
     domain: 'arabiq.herokuapp.com',
-    user_name: ENV["GMAIL_ADRESS"],
-    password: ENV["GMAIL_PASSWORD"],
+    user_name: ENV['GMAIL_ADRESS'],
+    password: ENV['GMAIL_PASSWORD'],
     authentication: 'plain',
     enable_starttls_auto: true
   }
