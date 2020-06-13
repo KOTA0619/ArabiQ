@@ -1,3 +1,7 @@
-こんにちは<%= user.name %>さん
-下記のリンクをクリックしてアカウントを有効化してください。
-<%= link_to "有効化する", edit_acount_activation(user.activation_token, email: @user.email) %>
+<h1>ArabiQ</h1>
+
+<p>こんにちは<%= @user.name %>さん</p>
+
+<p>下記のリンクをクリックしてアカウントを有効化してください。</p>
+
+<%= link_to "有効化する", edit_acount_activation_url(@user.activation_token, email: @user.email) %>
