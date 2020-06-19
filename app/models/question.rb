@@ -18,4 +18,6 @@ class Question < ApplicationRecord
       
     notification.save
   end
+  
+  mount_uploader :image, ImageUploader
 end
