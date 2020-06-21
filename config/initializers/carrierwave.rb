@@ -14,6 +14,7 @@ if Rails.env.production?
       path_style: true
     }
     config.fog_directory = 'arabiq'
+    config.asset_host = 'https://s3.us-east-1.amazonaws.com/arabiq'
     config.fog_attributes = { cache_control: "public, max_age=#{365.days.to_i}"}
   end
 end
