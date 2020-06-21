@@ -75,3 +75,5 @@ end
 gem 'dotenv-rails'
 
 gem 'jquery-rails'
+
+gem 'fog-aws'

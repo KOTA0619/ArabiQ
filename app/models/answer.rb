@@ -5,4 +5,6 @@ class Answer < ApplicationRecord
   validates :content, presence: true, length: { maximum: 1000 }
   
   has_many :notifications, dependent: :destroy
+  
+  mount_uploader :image, ImageUploader
 end

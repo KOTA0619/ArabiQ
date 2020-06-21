@@ -9,7 +9,7 @@
             <h1><%= @question.title %></h1>
             <p class="q_content"><%= safe_join(@question.content.split("\n"),tag(:br)) %></p>
             <% if @question.image? %>
-              <%= image_tag @question.image.url %>
+              <%= image_tag @question.image.url, id: :image_prev %>
             <% end %>
             <p class="text-right text-muted"><%= @question.created_at %></p>
             
@@ -38,6 +38,9 @@
               </div>
               <div class="col-sm-8">
                   <p class="q_content"><%= safe_join("#{answer.content}".split("\n"),tag(:br)) %></p>
+                  <% if answer.image? %>
+                    <%= image_tag answer.image.url, id: :image_prev %>
+                  <% end %>
                   <p class="text-right text-muted"><%= answer.created_at %></p>
                   <% if current_user == answer.user %>
                     <div>

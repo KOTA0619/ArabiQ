@@ -43,13 +43,15 @@
             <div>
               <% if @question.image? %>
                 <%= image_tag @question.image.url, id: :image_prev %>
+              <% else %>
+                <%= image_tag 'no_image_yoko.jpg', id: :image_prev %>
               <% end %>
             </div>
             
         </div>    
     </div>
     <div class="text-center">
-      <%= f.submit '編集', class: 'btn btn-primary btn-lg mb-3' %>
+      <%= f.submit '編集', class: 'btn btn-primary btn-lg mb-3 mt-3' %>
     </div>
     <% end %>
 </div>

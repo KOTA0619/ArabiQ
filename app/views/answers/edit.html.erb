@@ -1,26 +1,61 @@
-<h1 class="mt-5 mb-3 text-center">返信編集</h1></h1>
+<div class="container">
 
-<div class="text-center border-top">
+<h1 class="mt-5 mb-3 text-center">返信編集</h1></h1>
+<hr>
+<div class="text-center">
     <h2 class="mt-3">質問</h2>
     <% question = Question.find(params[:question_id]) %>
     <p>タイトル：<%= question.title %></p>
     <p class="q_content">本文:<%= question.content %></p></p>
 </div>
-
-
-<div class="row mt-5">
-    <div class="col-sm-6 offset-sm-3">
+<hr>
+<%= form_with(model: @answer, url: question_answer_path, local: true) do |f| %>
+  <div class="row mt-5">
+      <div class="col-sm-6">
+        
+          <div class="form-group">
+              <%= f.label :content, '本文' %>
+              <%= f.text_area :content, class: 'form-control' %>
+          </div>
+    
+      </div>
       
-      <%= form_with(model: @answer, url: question_answer_path, local: true) do |f| %>
-        
-        <div class="form-group">
-            <%= f.label :content, '本文' %>
-            <%= f.text_area :content, class: 'form-control' %>
-        </div>
-        
-        <div class="text-center">
-        　<%= f.submit '投稿', class: 'btn btn-primary btn-center' %>
-        </div>
-      <% end %>
-    </div>
+      <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :image, '画像' %>
+            <%= f.file_field :image, class: 'form-control', id: :img %>
+          </div>
+          
+          <script type="text/javascript">
+            $(function() {
+              function readURL(input){
+                if (input.files && input.files[0]){
+                  var reader = new FileReader();
+                  reader.onload = function(e){
+                    $('#image_prev').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+                }
+              }
+              $('#img').change(function(){
+                readURL(this);
+              });
+            });
+          </script>
+          
+          <div>
+            <% if @answer.image? %>
+              <%= image_tag @answer.image.url, id: :image_prev %>
+            <% else %>
+              <%= image_tag 'no_image_yoko.jpg', id: :image_prev %>
+            <% end %>
+          </div>
+          
+      </div>
+  </div>
+  <div class="text-center">
+    <%= f.submit '投稿', class: 'btn btn-primary btn-lg mb-3 mt-3' %>
+  </div>
+<% end %>
+
 </div>
