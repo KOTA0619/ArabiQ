@@ -33,3 +33,5 @@ module ArabiQ
     config.i18n.default_locale = :ja
   end
 end
+
+config.assets.initialize_on_precompile = false
