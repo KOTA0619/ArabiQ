@@ -13,7 +13,7 @@ if Rails.env.production?
       region: ENV['AWS_REGION'],
       path_style: true
     }
-    config.fog_directory = 'arabiq-image'
+    config.fog_directory = 'arabiq'
     config.fog_attributes = { cache_control: "public, max_age=#{365.days.to_i}"}
   end
 end
