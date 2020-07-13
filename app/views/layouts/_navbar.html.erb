@@ -15,50 +15,20 @@
                   <% end %>
                 </li>
                 <li class="nav-item"><%= link_to '質問する', new_question_path, class: 'btn btn-lg btn-success' %></li>
-                <li class="nav-item dropdown">
-                  <% notifications = current_user.passive_notifications.where(checked: false).order('created_at DESC').limit(5) %>
-                    <a href="#" class="nav-link dropdown-toggle btn-lg text-white" data-toggle="dropdown">
-                      通知
-                      <% notifications_number = notifications.count %>
-                      <% if notifications_number > 0 %>
-                        <span class="badge badge-primary"><%= notifications_number %></span>
-                      <% end %>
-                    </a>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <p class="text-center">通知<hr></p>
-                      <div class="notifications_dropdown">
-                        <% notifications.each do |notification| %>
-                          <div>
-                            <% @user = User.find_by(id: notification.visitor) %>
-                              <p><%= link_to @user.name.truncate(10), user_path(@user) %>さんが<%= link_to 'あなたの投稿', question_path(notification.question_id) %>に返信しました。</p>
-                              <p class="text-muted text-center"><%= notification.answer.content %></p>
-                          </div>
-                          <hr>
-                        <% end %>
-                        <div class="text-right mr-2">
-                      　   <%= link_to 'もっと見る', user_notifications_path(current_user) %>
-                        </div>  
-                      </div>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle btn-lg text-white" data-toggle="dropdown">メニュー</a>
-                  <ul class="dropdown-menu">
-                    <li class="dropdown-item"><%= link_to current_user.name.truncate(10), user_path(current_user) %></li>
-                    <li class="dropdown-item"><%= link_to 'ユーザー一覧', users_path %></li>
-                    <li class="dropdown-item"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
-                    <li class="dropdown-item"><%= link_to 'ユーザー設定', edit_user_path(current_user) %></li>
-                    <li class="dropdown-item"><%= link_to '退会', withdrawl_path %></li>
-                  </ul>
-                </li>
               <% else %>      
                 <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'btn btn-lg text-white' %></li>
                 <li class="nav-item"><%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-lg text-white' %></li>
               <% end %>
             </ul>
           </div>
-        </div>  
-         
-      </div>
+      </div>  
+    </nav>
+    <nav id="global_nav">
+        <ul>
+            <li class="btn"><%= link_to current_user.name.truncate(10), user_path(current_user) %></li>
+            <li class="btn"><%= link_to 'ユーザー一覧', users_path %></li>
+            <li class="btn"><%= link_to 'ユーザー設定', edit_user_path(current_user) %></li>
+            <li class="btn"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+        </ul>
     </nav>
 </header>
