@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_20_143232) do
+ActiveRecord::Schema.define(version: 2020_07_16_160318) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_06_20_143232) do
     t.string "image"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "question_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_favorites_on_question_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,6 +72,8 @@ ActiveRecord::Schema.define(version: 2020_06_20_143232) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "favorites", "questions"
+  add_foreign_key "favorites", "users"
   add_foreign_key "notifications", "answers"
   add_foreign_key "notifications", "questions"
   add_foreign_key "notifications", "users", column: "visited_id"

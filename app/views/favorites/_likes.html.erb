@@ -1,0 +1,6 @@
+<% if question.liked_by?(current_user) %>
+  <%= link_to 'お気に入り解除', question_dislike_path(question.id), method: :delete, remote: true, class: 'text-white' %>
+<% else %>
+  <%= link_to 'お気に入り登録', question_like_path(question.id), method: :post, remote: true, class: 'text-white' %>
+<% end %>
+  

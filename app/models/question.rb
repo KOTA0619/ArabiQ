@@ -20,4 +20,10 @@ class Question < ApplicationRecord
   end
   
   mount_uploader :image, ImageUploader
+  
+  has_many :favorites, dependent: :destroy
+  
+  def liked_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 end

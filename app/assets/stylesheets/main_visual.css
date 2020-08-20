@@ -4,15 +4,17 @@
 }
 
 .main_visual img {
+    max-width: 1170px;
     width: 100%;
 }
 
 .main_text {
     position: absolute;
     color: #fff;
-    top: 10%;
-    left: 0;
+    top: 20%;
+    left: 5%;
     margin-left: 50px;
+    opacity: 0.8;
 }
 
 .main_text p {

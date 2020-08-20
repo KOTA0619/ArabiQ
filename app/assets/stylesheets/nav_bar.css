@@ -14,9 +14,7 @@
 
 #global_nav ul li{
     list-style: none;
-    background-color: #333;
-    color: white;
+    background-color: #343a40;
     border: solid 2px white;
     width: 25%;
-    height: 50px;
 }

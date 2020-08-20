@@ -2,33 +2,92 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"><h2>ArabiQ</h2></a>
+        
          
-          <div class="justify-content-end">
-            <ul class="navbar-nav">
-              <% if logged_in? %>
-                <li class="nav-item mr-4 mt-2">
-                  <%= form_with url: search_questions_path, method: :get, local: true do |f| %>
-                  <div class="row">
-                    <%= f.text_field :keyword %>
-                    <%= f.submit :'検索' %>
-                  </div>
-                  <% end %>
-                </li>
-                <li class="nav-item"><%= link_to '質問する', new_question_path, class: 'btn btn-lg btn-success' %></li>
-              <% else %>      
-                <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'btn btn-lg text-white' %></li>
-                <li class="nav-item"><%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-lg text-white' %></li>
+        <ul class="navbar-nav mr-auto ml-2 mb-2">
+            <li class="nav-item mr-4 mt-2">
+              <%= form_with url: search_questions_path, method: :get, local: true do |f| %>
+                <div class="row">
+                  <%= f.text_field :keyword %>
+                  <%= f.submit :'検索' %>
+                </div>
               <% end %>
-            </ul>
-          </div>
+            </li>
+        </ul>
+            
+        <ul class="navbar-nav">
+          <% if logged_in? %>
+            <li class="nav-item"><%= link_to '質問する', new_question_path, class: 'btn btn-lg btn-success mt-2' %></li>
+            
+            <script type="text/javascript">
+              $(function(){
+                $('.nav-dropdown').click(function(){
+                  $('.nav-dropdown-menu').fadeIn();
+                 });
+              });
+            </script>
+            
+            <!-- 通知のドロップダウンメニュー -->
+            
+            <li class="nav-item dropdown mt-2 ml-2">
+                  <% notifications = current_user.passive_notifications.where(checked: false).order('created_at DESC').limit(5) %>
+                    <a href="#" class="nav-link dropdown-toggle btn-lg text-white nav-dropdown" data-toggle="dropdown" >
+                      通知
+                      <% notifications_number = notifications.count %>
+                      <% if notifications_number > 0 %>
+                        <span class="badge badge-primary"><%= notifications_number %></span>
+                      <% end %>
+                    </a>
+                  <div class="dropdown-menu dropdown-menu-right nav-dropdown-menu">
+                    <p class="text-center">通知<hr></p>
+                      <div class="notifications_dropdown">
+                        <% notifications.each do |notification| %>
+                          <div>
+                            <% @user = User.find_by(id: notification.visitor) %>
+                              <p><%= link_to @user.name.truncate(10), user_path(@user) %>さんが<%= link_to 'あなたの投稿', question_path(notification.question_id) %>に返信しました。</p>
+                              <p class="text-muted text-center"><%= notification.answer.content %></p>
+                          </div>
+                          <hr>
+                        <% end %>
+                        <div class="text-right mr-2">
+                      　   <%= link_to 'もっと見る', user_notifications_path(current_user) %>
+                        </div>  
+                      </div>
+                  </div>
+                </li>
+            
+            <!-- ログイン中ユーザーのドロップダウンメニュー -->
+                
+            <li class="nav-item dropdown mt-2">
+                <a href="" class="nav-link dropdown-toggle btn-lg text-white nav-dropdown" data-toggle="dropdown">
+                    <%= current_user.name %>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right nav-dropdown-menu">
+                    <ul id="user-menu">
+                        <li><%= link_to 'マイページ', user_path(current_user) %></li>
+                        <li><%= link_to 'ユーザー設定', edit_user_path(current_user) %></li>
+                        <li><%= link_to 'ログアウト', logout_path %></li>
+                        <li><%= link_to '退会', user_path(current_user), method: :delete %></li>
+                    </ul>
+                </div>
+            </li>
+          <% else %>      
+            <li class="nav-item"><%= link_to 'ログイン', login_path, class: 'btn btn-lg text-white' %></li>
+            <li class="nav-item"><%= link_to 'ユーザー登録', new_user_path, class: 'btn btn-lg text-white' %></li>
+          <% end %>
+        </ul>
       </div>  
     </nav>
-    <nav id="global_nav">
-        <ul>
-            <li class="btn"><%= link_to current_user.name.truncate(10), user_path(current_user) %></li>
-            <li class="btn"><%= link_to 'ユーザー一覧', users_path %></li>
-            <li class="btn"><%= link_to 'ユーザー設定', edit_user_path(current_user) %></li>
-            <li class="btn"><%= link_to 'ログアウト', logout_path, method: :delete %></li>
-        </ul>
-    </nav>
+    
+    
+    <% if logged_in? %>
+      <nav id="global_nav">
+          <ul>
+              <li class="btn btn-lg"><%= link_to 'ホーム', root_path, class: 'text-white' %></li>
+              <li class="btn btn-lg"><%= link_to 'ユーザー一覧', users_path, class: 'text-white' %></li>
+              <li class="btn btn-lg"><%= link_to 'マイページ', user_path(current_user),  class: 'text-white' %></li>
+              <li class="btn btn-lg"><%= link_to 'お気に入り', user_favorite_questions_path(current_user), class: 'text-white' %></li>
+          </ul>
+      </nav>
+    <% end %>
 </header>

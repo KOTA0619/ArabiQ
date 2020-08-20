@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+#user-menu{
+    list-style: none;
+}
