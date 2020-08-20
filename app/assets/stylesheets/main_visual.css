@@ -1,17 +1,16 @@
 .main_visual {
+    background-image: url('main_visual.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 500px;
     position: relative;
-    
-}
-
-.main_visual img {
-    max-width: 1170px;
-    width: 100%;
 }
 
 .main_text {
     position: absolute;
     color: #fff;
-    top: 20%;
+    top: 50%;
+    transform: translateY(-50%);
     left: 5%;
     margin-left: 50px;
     opacity: 0.8;
